@@ -12,4 +12,22 @@
         return resultSoFar + nextLetter;
     }, "");
 
+    function map(fn, arr) {
+        return arr.reduce(function(result, item) {
+            return [...result, fn(item)];
+        }, []);
+    };
+
+    const array = [1, 2, 3];
+    const doubledArray = map((item) => item * 2, array);
+
+    function filter(fn, arr) {
+        return arr.reduce(function(result, item) {
+            return fn(item) ? [...result, item] : result;
+        }, []);
+    };
+
+    const array = [true, false, 0, 1, 'hi', ''];
+    const truthyItems = filter((item) => !!item, array);
+
 </script>
