@@ -110,6 +110,63 @@
     //ES6 SYNTAX
     const companyNames = companies.map(company => company.name);
 
+    //** map company names + start/end dates (with ES6 string literal)
+    const formattedCompanies = companies.map(company => {
+        return `${company.name} [${company.start} - ${company.end}]`;
+    })
 
+    //** map square root of ages, then map age * 2 (chaining) 
+    const agesSquare = ages
+        .map(age => Math.sqrt(age))
+        .map(age => age * 2)
+
+    // ======= SORT ======= //
+
+    // Sorts elements in place and returns the array.
+    // arr.sort([compareFunction]).
+    // compareFunction takes two arguments:
+        // (1) firstEl - first element for comparison, 
+        // (2) secondEl - second element for comparison
+    // If compareFunction(a,b) < 0, a comes first.
+    // If compareFunction(a, b) === 0, leave a and b unchanged.
+    // If compareFunction(a,b) > 0, b comes first.
+
+    //** sort companies by start year
+    const sortedCompanies = companies.sort(function(c1, c2) {
+        if (c1.start > c2.start) {
+            return 1;
+        } else {
+            return -1;
+        }
+    })
+
+    // ES6 syntax
+    const sortedCompanies = companies.sort((a,b) => (a.start > b.start ? 1 : -1));
+
+    //** sort ages from youngest to oldest 
+    const youngestToOldest = ages.sort((a,b) => a - b);
+    //** sort ages from oldest to youngest
+    const oldestToYoungest = ages.sort((a,b) => b - a);
+
+    // ======= REDUCE ======= //
+
+    //** Add all ages together 
+    const ageSum = ages.reduce(function(total, age) {
+        return total + age;
+    }, 0);
+    // ES6 syntax (omitting optional starting value)
+    const ageSum = ages.reduce((total, age) => total + age);
+
+    //** Get total years for all companies
+    const totalYears = companies.reduce((total, company) => total + (company.end - company.start), 0);
+
+    // ======= COMBINING/CHAINING ARRAY METHODS ======= //
+
+    const combined = ages
+        .map(age => age * 2)
+        .filter(age => age >= 40)
+        .sort((a,b) => a - b)
+        .reduce((total, item) => total + item, 0);
+        
 
 </script>
